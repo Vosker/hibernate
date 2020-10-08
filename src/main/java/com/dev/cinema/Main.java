@@ -4,16 +4,19 @@ import com.dev.cinema.lib.Injector;
 import com.dev.cinema.model.CinemaHall;
 import com.dev.cinema.model.Movie;
 import com.dev.cinema.model.MovieSession;
+import com.dev.cinema.model.User;
+import com.dev.cinema.security.AuthenticationService;
 import com.dev.cinema.service.CinemaHallService;
 import com.dev.cinema.service.MovieService;
 import com.dev.cinema.service.MovieSessionService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import javax.naming.AuthenticationException;
 
 public class Main {
     private static Injector injector = Injector.getInstance("com.dev.cinema");
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws AuthenticationException {
         MovieService movieService = (MovieService) injector.getInstance(MovieService.class);
         Movie testMovie = new Movie();
         testMovie.setTitle("Fast and Furious");
@@ -38,5 +41,12 @@ public class Main {
         movieSessionService.add(movieSession);
         movieSessionService.findAvailableSessions(testMovie.getId(),
                 LocalDate.now()).forEach(System.out::println);
+
+        AuthenticationService autService =
+                (AuthenticationService) injector.getInstance(AuthenticationService.class);
+        autService.register("test@gmail.com", "qwerty");
+        User user1 = autService.login("test@gmail.com", "qwerty");
+        System.out.println(user1);
+        User user2 = autService.login("random@gmail.com", "1234");
     }
 }
