@@ -24,7 +24,7 @@ public class TicketDaoImpls implements TicketDao {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new DataProcessingException("Can't add the shopping cart "
+            throw new DataProcessingException("Can't add the ticket "
                     + ticket, e);
         } finally {
             if (session != null) {

@@ -10,7 +10,6 @@ import com.dev.cinema.service.CinemaHallService;
 import com.dev.cinema.service.MovieService;
 import com.dev.cinema.service.MovieSessionService;
 import com.dev.cinema.service.ShoppingCartService;
-
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.naming.AuthenticationException;
