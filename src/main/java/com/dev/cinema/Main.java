@@ -9,6 +9,8 @@ import com.dev.cinema.security.AuthenticationService;
 import com.dev.cinema.service.CinemaHallService;
 import com.dev.cinema.service.MovieService;
 import com.dev.cinema.service.MovieSessionService;
+import com.dev.cinema.service.ShoppingCartService;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.naming.AuthenticationException;
@@ -47,6 +49,10 @@ public class Main {
         autService.register("test@gmail.com", "qwerty");
         User user1 = autService.login("test@gmail.com", "qwerty");
         System.out.println(user1);
-        User user2 = autService.login("random@gmail.com", "1234");
+
+        ShoppingCartService shoppingCartService
+                = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
+        shoppingCartService.addSession(movieSession, user1);
+        shoppingCartService.addSession(movieSession, user1);
     }
 }
