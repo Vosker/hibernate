@@ -44,8 +44,6 @@ public class OrderDaoImpl implements OrderDao {
                     + "where o.user = :user", Order.class);
             getAllOrdersQuery.setParameter("user", user);
             return getAllOrdersQuery.getResultList();
-        } catch (Exception e) {
-            throw new DataProcessingException("Can't get orders of " + user, e);
         }
     }
 }
