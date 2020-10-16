@@ -14,8 +14,10 @@ import com.dev.cinema.service.ShoppingCartService;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import javax.naming.AuthenticationException;
+import org.apache.log4j.Logger;
 
 public class Main {
+    private static final Logger log = Logger.getLogger(Main.class);
     private static Injector injector = Injector.getInstance("com.dev.cinema");
 
     public static void main(String[] args) throws AuthenticationException {
@@ -24,7 +26,7 @@ public class Main {
         testMovie.setTitle("Fast and Furious");
         movieService.add(testMovie);
         testMovie = movieService.add(testMovie);
-        movieService.getAll().forEach(System.out::println);
+        movieService.getAll().forEach(log::info);
 
         CinemaHallService cinemaHallService =
                 (CinemaHallService) injector.getInstance(CinemaHallService.class);
@@ -32,7 +34,7 @@ public class Main {
         testCinemaHall.setCapacity(61);
         testCinemaHall.setDescription("Test");
         testCinemaHall = cinemaHallService.add(testCinemaHall);
-        cinemaHallService.getAll().forEach(System.out::println);
+        cinemaHallService.getAll().forEach(log::info);
 
         MovieSession movieSession = new MovieSession();
         movieSession.setCinemaHall(testCinemaHall);
@@ -42,13 +44,19 @@ public class Main {
                 (MovieSessionService) injector.getInstance(MovieSessionService.class);
         movieSessionService.add(movieSession);
         movieSessionService.findAvailableSessions(testMovie.getId(),
-                LocalDate.now()).forEach(System.out::println);
+                LocalDate.now()).forEach(log::info);
 
         AuthenticationService autService =
                 (AuthenticationService) injector.getInstance(AuthenticationService.class);
         autService.register("test@gmail.com", "qwerty");
+        log.info("Registration completed");
         User user1 = autService.login("test@gmail.com", "qwerty");
-        System.out.println(user1);
+        log.info("Login completed");
+        try {
+            autService.login("1919", "7777");
+        } catch (AuthenticationException e) {
+            log.warn("Wrong email or password",e);
+        }
 
         ShoppingCartService shoppingCartService
                 = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);
@@ -58,6 +66,6 @@ public class Main {
         OrderService orderService
                 = (OrderService) injector.getInstance(OrderService.class);
         orderService.completeOrder(shoppingCartService.getByUser(user1).getTickets(), user1);
-        orderService.getOrderHistory(user1).forEach(System.out::println);
+        orderService.getOrderHistory(user1).forEach(log::info);
     }
 }
