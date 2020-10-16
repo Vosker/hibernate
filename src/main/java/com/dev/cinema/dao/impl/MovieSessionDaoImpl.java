@@ -14,8 +14,8 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 @Dao
-public class MovieSessionDaoImpls implements MovieSessionDao {
-    private static final Logger log = Logger.getLogger(MovieSessionDaoImpls.class);
+public class MovieSessionDaoImpl implements MovieSessionDao {
+    private static final Logger log = Logger.getLogger(MovieSessionDaoImpl.class);
 
     @Override
     public List<MovieSession> findAvailableSessions(Long movieId, LocalDate date) {

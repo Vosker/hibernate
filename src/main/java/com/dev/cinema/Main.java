@@ -20,7 +20,7 @@ public class Main {
     private static final Logger log = Logger.getLogger(Main.class);
     private static Injector injector = Injector.getInstance("com.dev.cinema");
 
-    public static void main(String[] args) throws AuthenticationException {
+    public static void main(String[] args) {
         MovieService movieService = (MovieService) injector.getInstance(MovieService.class);
         Movie testMovie = new Movie();
         testMovie.setTitle("Fast and Furious");
@@ -50,13 +50,13 @@ public class Main {
                 (AuthenticationService) injector.getInstance(AuthenticationService.class);
         autService.register("test@gmail.com", "qwerty");
         log.info("Registration completed");
-        User user1 = autService.login("test@gmail.com", "qwerty");
-        log.info("Login completed");
+        User user1 = null;
         try {
-            autService.login("1919", "7777");
+            user1 = autService.login("test@gmail.com", "qwerty");
         } catch (AuthenticationException e) {
             log.warn("Wrong email or password",e);
         }
+        log.info("Login completed");
 
         ShoppingCartService shoppingCartService
                 = (ShoppingCartService) injector.getInstance(ShoppingCartService.class);

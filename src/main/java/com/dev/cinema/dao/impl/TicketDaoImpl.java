@@ -10,8 +10,8 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 @Dao
-public class TicketDaoImpls implements TicketDao {
-    private static final Logger log = Logger.getLogger(TicketDaoImpls.class);
+public class TicketDaoImpl implements TicketDao {
+    private static final Logger log = Logger.getLogger(TicketDaoImpl.class);
 
     @Override
     public Ticket add(Ticket ticket) {
