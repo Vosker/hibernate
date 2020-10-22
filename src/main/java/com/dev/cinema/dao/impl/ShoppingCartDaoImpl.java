@@ -6,21 +6,26 @@ import com.dev.cinema.lib.Dao;
 import com.dev.cinema.model.ShoppingCart;
 import com.dev.cinema.model.User;
 import com.dev.cinema.util.HibernateUtil;
+import org.apache.log4j.Logger;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 @Dao
 public class ShoppingCartDaoImpl implements ShoppingCartDao {
+    private static final Logger log = Logger.getLogger(ShoppingCartDaoImpl.class);
+
     @Override
     public ShoppingCart add(ShoppingCart shoppingCart) {
         Transaction transaction = null;
         Session session = null;
+        log.info("Adding shopping cart " + shoppingCart);
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
             session.save(shoppingCart);
             transaction.commit();
+            log.info("Shopping cart added");
             return shoppingCart;
         } catch (Exception e) {
             if (transaction != null) {
@@ -37,6 +42,7 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
 
     @Override
     public ShoppingCart getByUser(User user) {
+        log.info("Getting cart of user " + user);
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             Query<ShoppingCart> getCartByUserQuery
                     = session.createQuery("from ShoppingCart sc "
@@ -54,10 +60,12 @@ public class ShoppingCartDaoImpl implements ShoppingCartDao {
     public void update(ShoppingCart shoppingCart) {
         Transaction transaction = null;
         Session session = null;
+        log.info("Updating shopping cart " + shoppingCart);
         try {
             session = HibernateUtil.getSessionFactory().openSession();
             transaction = session.beginTransaction();
             session.update(shoppingCart);
+            log.info("Cart was updated");
             transaction.commit();
         } catch (Exception e) {
             if (transaction != null) {
