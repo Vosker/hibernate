@@ -8,8 +8,6 @@ public class MovieSessionRequestDto {
     public MovieSessionRequestDto() {
     }
 
-
-
     public String getShowTime() {
         return showTime;
     }
