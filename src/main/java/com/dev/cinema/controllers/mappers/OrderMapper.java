@@ -3,8 +3,6 @@ package com.dev.cinema.controllers.mappers;
 import com.dev.cinema.model.Order;
 import com.dev.cinema.model.dto.OrderResponseDto;
 import com.dev.cinema.model.dto.TicketResponseDto;
-import com.dev.cinema.service.UserService;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Component;
