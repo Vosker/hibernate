@@ -1,4 +1,4 @@
-package com.dev.cinema.controllers.mappers;
+package com.dev.cinema.service.mappers;
 
 import com.dev.cinema.model.User;
 import com.dev.cinema.model.dto.UserResponseDto;

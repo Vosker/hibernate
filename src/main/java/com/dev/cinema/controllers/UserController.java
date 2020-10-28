@@ -1,6 +1,6 @@
 package com.dev.cinema.controllers;
 
-import com.dev.cinema.controllers.mappers.UserMapper;
+import com.dev.cinema.service.mappers.UserMapper;
 import com.dev.cinema.model.dto.UserResponseDto;
 import com.dev.cinema.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;

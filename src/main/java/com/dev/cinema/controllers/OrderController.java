@@ -1,6 +1,6 @@
 package com.dev.cinema.controllers;
 
-import com.dev.cinema.controllers.mappers.OrderMapper;
+import com.dev.cinema.service.mappers.OrderMapper;
 import com.dev.cinema.model.ShoppingCart;
 import com.dev.cinema.model.dto.OrderResponseDto;
 import com.dev.cinema.service.OrderService;
@@ -8,7 +8,6 @@ import com.dev.cinema.service.ShoppingCartService;
 import com.dev.cinema.service.UserService;
 import java.util.List;
 import java.util.stream.Collectors;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,7 +22,6 @@ public class OrderController {
     private final ShoppingCartService shoppingCartService;
     private final OrderMapper orderMapper;
 
-    @Autowired
     public OrderController(OrderService orderService, OrderMapper orderMapper,
                            UserService userService, ShoppingCartService shoppingCartService) {
         this.orderService = orderService;

@@ -1,4 +1,4 @@
-package com.dev.cinema.controllers.mappers;
+package com.dev.cinema.service.mappers;
 
 import com.dev.cinema.model.CinemaHall;
 import com.dev.cinema.model.dto.CinemaHallRequestDto;

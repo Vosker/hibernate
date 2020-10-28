@@ -1,4 +1,4 @@
-package com.dev.cinema.controllers.mappers;
+package com.dev.cinema.service.mappers;
 
 import com.dev.cinema.model.MovieSession;
 import com.dev.cinema.model.dto.MovieSessionRequestDto;
@@ -19,7 +19,7 @@ public class MovieSessionMapper {
         this.cinemaHallService = cinemaHallService;
     }
 
-    public MovieSessionResponseDto toResponseFromSession(MovieSession movieSession) {
+    public MovieSessionResponseDto mapToDto(MovieSession movieSession) {
         MovieSessionResponseDto movieSessionResponseDto = new MovieSessionResponseDto();
         movieSessionResponseDto.setId(movieSession.getId());
         movieSessionResponseDto.setMovieId(movieSession.getMovie().getId());
@@ -29,7 +29,7 @@ public class MovieSessionMapper {
         return movieSessionResponseDto;
     }
 
-    public MovieSession fromRequestToSession(MovieSessionRequestDto movieSessionRequestDto) {
+    public MovieSession mapToMovie(MovieSessionRequestDto movieSessionRequestDto) {
         MovieSession movieSession = new MovieSession();
         movieSession.setMovie(movieService.get(movieSessionRequestDto.getMovieId()));
         movieSession

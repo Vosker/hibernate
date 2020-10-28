@@ -1,4 +1,4 @@
-package com.dev.cinema.controllers.mappers;
+package com.dev.cinema.service.mappers;
 
 import com.dev.cinema.model.ShoppingCart;
 import com.dev.cinema.model.dto.ShoppingCartResponseDto;
@@ -13,12 +13,12 @@ public class ShoppingCartMapper {
         this.mapper = mapper;
     }
 
-    public ShoppingCartResponseDto fromEntityToDto(ShoppingCart cart) {
+    public ShoppingCartResponseDto mapToDto(ShoppingCart cart) {
         ShoppingCartResponseDto shoppingCartDto = new ShoppingCartResponseDto();
         shoppingCartDto.setUserId(cart.getUser().getId());
         shoppingCartDto.setTickets(cart.getTickets()
                 .stream()
-                .map(mapper::fromEntityToDto)
+                .map(mapper::mapToDto)
                 .collect(Collectors.toList()));
         return shoppingCartDto;
     }

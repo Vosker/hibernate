@@ -1,6 +1,6 @@
 package com.dev.cinema.controllers;
 
-import com.dev.cinema.controllers.mappers.ShoppingCartMapper;
+import com.dev.cinema.service.mappers.ShoppingCartMapper;
 import com.dev.cinema.model.User;
 import com.dev.cinema.model.dto.ShoppingCartResponseDto;
 import com.dev.cinema.service.MovieSessionService;
@@ -39,6 +39,6 @@ public class ShoppingCartController {
     @GetMapping("/by-user")
     public ShoppingCartResponseDto getByUserId(@RequestParam(name = "id") Long userId) {
         User user = userService.get(userId);
-        return mapper.fromEntityToDto(cartService.getByUser(user));
+        return mapper.mapToDto(cartService.getByUser(user));
     }
 }

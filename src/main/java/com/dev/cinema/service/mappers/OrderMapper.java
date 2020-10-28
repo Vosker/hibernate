@@ -1,4 +1,4 @@
-package com.dev.cinema.controllers.mappers;
+package com.dev.cinema.service.mappers;
 
 import com.dev.cinema.model.Order;
 import com.dev.cinema.model.dto.OrderResponseDto;
@@ -19,7 +19,7 @@ public class OrderMapper {
         OrderResponseDto orderDto = new OrderResponseDto();
         orderDto.setId(order.getId());
         List<TicketResponseDto> tickets = order.getTickets().stream()
-                .map(ticketMapper::fromEntityToDto)
+                .map(ticketMapper::mapToDto)
                 .collect(Collectors.toList());
         orderDto.setTickets(tickets);
         orderDto.setOrderCreationTime(
