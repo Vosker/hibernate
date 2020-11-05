@@ -1,8 +1,11 @@
 package com.dev.cinema.model.dto;
 
 import com.dev.cinema.validators.ValidEmail;
+import com.dev.cinema.validators.ValidPassword;
+
 import javax.validation.constraints.NotNull;
 
+@ValidPassword
 public class UserRequestDto {
     @ValidEmail
     private String email;
