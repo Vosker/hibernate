@@ -1,10 +1,9 @@
 package com.dev.cinema.security;
 
+import com.dev.cinema.model.Role;
 import com.dev.cinema.model.User;
-import javax.naming.AuthenticationException;
+import java.util.Set;
 
 public interface AuthenticationService {
-    User login(String login, String password) throws AuthenticationException;
-
-    User register(String email, String password);
+    User register(String email, String password, Set<Role> roles);
 }
